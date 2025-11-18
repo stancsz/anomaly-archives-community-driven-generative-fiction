@@ -54,25 +54,26 @@ Generate high-impact horror narratives, prioritizing sustained psychological dre
 ## Project Structure and Season Management
 - The agent will organize work into seasons and chapters. Each season is a collection of episodes (chapters).
 - Season length: aim for 20–30 episodes per season.
-- Folder & file layout:
-  - Use kebab-case for folders: season-1/, season-2/, etc.
-  - Inside each season folder create chapter folders: chapter-1/, chapter-2/, ...
-  - Use UPPERCASE filenames for root markdown: SEASON1.md and CHAPTER1.md (numeric suffix matches folder).
-  - Chapter folders should contain CHAPTER<m>.md, plus optional drafts/ and notes/ subfolders.
-- File metadata & formatting:
-  - Every SEASON*.md and CHAPTER*.md must begin with a Metadata block including Season, Chapter, Title, Author, and a short Synopsis.
-  - Maintain consistent sections: Metadata, Synopsis, Structure, Notes.
-  - Use Markdown for all content and keep headings standardized (e.g., "# Chapter X — Title", "Metadata", "Synopsis").
+- Folder & file layout (reader-facing):
+  - Season folders: `season-<n>-<season-title-slug>/` (e.g., `season-1-catalog-of-quiet-ruptures/`). When a title is not yet known, `season-<n>/` MAY be used as a placeholder.
+  - Inside each season folder, chapters are single markdown files, not subfolders.
+  - Chapter filenames: `chapter-<m>-<chapter-title-slug>.md` (e.g., `chapter-1-the-hour-that-forgot.md`).
+  - Season overview file: `SEASON<n>.md` inside the season folder for high-level notes; this is not required for end readers.
+- File metadata & formatting (reader-friendly):
+  - Reader-facing chapter files should look like ebook chapters: a single top-level title and continuous prose.
+  - Avoid explicit "Metadata", "Synopsis", "Structure", or "Notes" sections in reader chapters.
+  - Any necessary metadata (season number, chapter number, short synopsis) should be implicit in the prose or kept minimal (e.g., a single italicized line under the title), not as heavy scaffolding.
+  - Use light Markdown: `#` for the chapter title, standard paragraphs, and occasional scene-break markers (`***`) only when needed.
 - Season lifecycle:
   - The agent will create chapter files as requested and track chapter counts per season.
-  - When the writer indicates the season's ending is satisfactory, the agent will start a new season: increment season number, create a new SEASON<n>.md with a new title, and begin chapter numbering at 1.
+  - When the writer indicates the season's ending is satisfactory, the agent will start a new season: increment season number, create a new `season-<n>-<title>/` folder, and begin chapter numbering at 1.
   - If chapter count would exceed 30, the agent should start a new season automatically or notify the writer to confirm starting a new season.
 - Automation rules:
-  - When creating chapters, the agent will pre-populate CHAPTER*.md with the required Metadata and a default structure template.
-  - For drafts and notes, create drafts/ and notes/ folders inside each chapter folder.
-  - Keep naming and metadata strictly consistent to enable easy automation and navigation.
+  - When creating chapters, the agent will automatically generate season and chapter titles and use them for filenames.
+  - Internal planning metadata (outlines, notes) should be kept in separate note files or in `.writer/` resources, not in the reader-facing chapter text.
+  - Keep naming and folder structure strictly consistent to enable easy automation and navigation.
 
 ## Formatting Conventions (quick reference)
-- Folders: season-<n>/, season-<n>/chapter-<m>/
-- Season file: season-<n>/SEASON<n>.md
-- Chapter file: season-<n>/chapter-<m>/CHAPTER<m>.md
+- Season folder: `season-<n>-<season-title-slug>/` (or `season-<n>/` as a temporary placeholder).
+- Season file: `season-<n>-<slug>/SEASON<n>.md`
+- Chapter file: `season-<n>-<slug>/chapter-<m>-<chapter-slug>.md` (reader-facing, epub-style prose)
