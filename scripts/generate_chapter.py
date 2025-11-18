@@ -9,7 +9,8 @@ from openai import OpenAI
 
 load_dotenv()
 
-BASE_DIR = Path(__file__).parent
+# Treat the project root (one level above this scripts directory) as BASE_DIR
+BASE_DIR = Path(__file__).resolve().parent.parent
 WRITER_DIR = BASE_DIR / ".writer"
 AGENT_FILE = WRITER_DIR / "AGENT.md"
 SEASON1_TEMPLATE_FILE = WRITER_DIR / "SEASON1.md"
