@@ -2,8 +2,8 @@ name: Daily Chapter Generation
 
 on:
   schedule:
-    # Run once per day (UTC)
-    - cron: "0 6 * * *"
+    # Run once per day (UTC) — corresponds to noon Calgary (UTC-7)
+    - cron: "0 19 * * *"
   workflow_dispatch:
 
 jobs:
@@ -43,4 +43,3 @@ jobs:
           fi
           git commit -m "Auto-generate new chapter"
           git push
-
